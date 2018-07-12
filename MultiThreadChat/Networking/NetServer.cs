@@ -120,7 +120,7 @@ namespace MultiThreadChat.Networking
         /// <summary>
         /// Runs server shutdown procedures (disconnects all clients)
         /// </summary>
-        protected virtual void Shutdown()
+        public virtual void Shutdown()
         {
             _serverRunning = false;
             _server.Stop();

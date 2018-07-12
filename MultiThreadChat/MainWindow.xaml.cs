@@ -191,11 +191,19 @@ namespace MultiThreadChat
         /// <param name="e">Event arguments</param>
         private void btnServerStart_Click(object sender, RoutedEventArgs e)
         {
-            _server = new NetServer<ExampleClient>(Convert.ToInt32(txtServerPort.Text), t => new ExampleClient(t));
-            _server.ServerShutdown += _serverShutdown;
+            int _port = 0;
+            if (int.TryParse(txtServerPort.Text, out _port))
+            {
+                _server = new NetServer<ExampleClient>(_port, t => new ExampleClient(t));
+                _server.ServerShutdown += _serverShutdown;
 
-            btnServerStart.IsEnabled = false;
-            btnServerStop.IsEnabled = true;
+                btnServerStart.IsEnabled = false;
+                btnServerStop.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid port");
+            }
         }
 
         /// <summary>
@@ -205,17 +213,32 @@ namespace MultiThreadChat
         /// <param name="e">Event arguments</param>
         private void btnServerConnect_Click(object sender, RoutedEventArgs e)
         {
-            //_client = new NetClient(new IPEndPoint(IPAddress.Parse(txtServerIP.Text), Convert.ToInt32(txtServerPort.Text)));
-            _client = new ExampleClient(new IPEndPoint(IPAddress.Parse(txtServerIP.Text), Convert.ToInt32(txtServerPort.Text)));
-            btnServerConnect.IsEnabled = false;
-            btnServerStart.IsEnabled = false;
-            btnServerDisconnect.IsEnabled = true;
+            IPAddress _address;
+            int _port = 0;
+            if (IPAddress.TryParse(txtServerIP.Text, out _address))
+            {
+                if (int.TryParse(txtServerPort.Text, out _port) && 0 < _port && _port < 65536)
+                {
+                    _client = new ExampleClient(new IPEndPoint(IPAddress.Parse(txtServerIP.Text), Convert.ToInt32(txtServerPort.Text)));
+                    btnServerConnect.IsEnabled = false;
+                    btnServerStart.IsEnabled = false;
+                    btnServerDisconnect.IsEnabled = true;
 
-            txtSend.IsEnabled = true;
+                    txtSend.IsEnabled = true;
 
-            _client.MessageReceived += _logMessage;
-            _client.MessageSent += _logMessage;
-            _client.Disconnected += _clientDisconnected;
+                    _client.MessageReceived += _logMessage;
+                    _client.MessageSent += _logMessage;
+                    _client.Disconnected += _clientDisconnected;
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid port");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid IP address");
+            }
         }
 
         /// <summary>
