@@ -27,7 +27,7 @@ namespace MultiThreadChat
         private string _txtSendDefaultText;
         private bool _txtSendWasModified = false;
         private ExampleClient _client;
-        private NetServer<ExampleClient> _server;
+        private ExampleServer _server;
         private bool _skipTextChangedEvent = true; //The event is loaded once at startup and the function needs to be skipped then
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace MultiThreadChat
             int _port = 0;
             if (int.TryParse(txtServerPort.Text, out _port))
             {
-                _server = new NetServer<ExampleClient>(_port, t => new ExampleClient(t));
+                _server = new ExampleServer(_port);
                 _server.ServerShutdown += _serverShutdown;
 
                 btnServerStart.IsEnabled = false;
