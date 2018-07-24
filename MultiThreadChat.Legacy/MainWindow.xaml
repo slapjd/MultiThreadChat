@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultiThreadChat"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <TextBox x:Name="txtLog" Margin="0,169,0,41" TextWrapping="Wrap" SpellCheck.IsEnabled="True" IsReadOnly="True"/>
         <Button x:Name="btnSend" Content="Send" Height="41" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="91" FontSize="20" IsEnabled="False" Click="btnSend_Click"/>
