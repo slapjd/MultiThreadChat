@@ -182,10 +182,10 @@ namespace MultiThreadChat.Networking
     /// <summary>
     /// Example of how to possibly implement sending/receiving of messages. Not necessarily the best way
     /// </summary>
-    class ExampleClient : NetClient
+    class ChatClient : NetClient
     {
-        public ExampleClient(TcpClient Client) : base(Client) { }
-        public ExampleClient(IPEndPoint ServerEndPoint) : base(ServerEndPoint) { }
+        public ChatClient(TcpClient Client) : base(Client) { }
+        public ChatClient(IPEndPoint ServerEndPoint) : base(ServerEndPoint) { }
 
         override public async void SendAsync(byte[] Message)
         {

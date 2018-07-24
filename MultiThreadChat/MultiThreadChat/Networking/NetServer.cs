@@ -128,9 +128,9 @@ namespace MultiThreadChat.Networking
     /// <summary>
     /// Example of how to handle new clients. In this case it was designed for a chat client (hence message forwarding)
     /// </summary>
-    class ExampleServer : NetServer<ExampleClient>
+    class ChatServer : NetServer<ChatClient>
     {
-        public ExampleServer(int Port)
+        public ChatServer(int Port)
             :base(Port)
         { }
 
@@ -157,7 +157,7 @@ namespace MultiThreadChat.Networking
         /// <param name="Client">TcpClient to create from</param>
         protected override void _handleNewClient(TcpClient Client)
         {
-            var newClient = new ExampleClient(Client);
+            var newClient = new ChatClient(Client);
             _clients.Add(newClient);
 
             newClient.MessageReceived += _forwardMessage;
