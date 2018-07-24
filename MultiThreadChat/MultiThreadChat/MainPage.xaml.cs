@@ -75,7 +75,7 @@ namespace MultiThreadChat
         private void _logMessage(object sender, MsgEventArgs e)
         {
             string _message = Encoding.Unicode.GetString(e.Message);
-            lblLog.Text = lblLog.Text + _message + Environment.NewLine;
+            txtLog.Text = txtLog.Text + _message + Environment.NewLine;
         }
 
         /// <summary>
@@ -240,6 +240,11 @@ namespace MultiThreadChat
         private void btnSend_Clicked(object sender, EventArgs e)
         {
             _sendMessage();
+        }
+
+        private void txtLog_Focused(object sender, FocusEventArgs e)
+        {
+            txtLog.Unfocus();
         }
     }
 }
