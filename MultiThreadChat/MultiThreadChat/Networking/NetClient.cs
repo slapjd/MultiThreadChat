@@ -85,18 +85,9 @@ namespace MultiThreadChat.Networking
         public event MsgEventHandler MessageSent;
         public event DisconnectHandler Disconnected;
 
-        protected void _invokeMessageReceived(MsgEventArgs e)
-        {
-            MessageReceived?.Invoke(this, e);
-        }
-        protected void _invokeMessageSent(MsgEventArgs e)
-        {
-            MessageSent?.Invoke(this, e);
-        }
-        protected void _invokeDisconnected(DisconnectArgs e)
-        {
-            Disconnected.Invoke(this, e);
-        }
+        protected void _invokeMessageReceived(MsgEventArgs e) => MessageReceived?.Invoke(this, e);
+        protected void _invokeMessageSent(MsgEventArgs e) => MessageSent?.Invoke(this, e);
+        protected void _invokeDisconnected(DisconnectArgs e) => Disconnected.Invoke(this, e);
 
         /// <summary>
         /// Disconnects a client
