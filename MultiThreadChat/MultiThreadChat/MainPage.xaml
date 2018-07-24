@@ -17,6 +17,7 @@
             <Entry x:Name="txtServerIP" />
             <Label Text="Port" />
             <Entry x:Name="txtServerPort" />
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -28,12 +29,15 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnConnect" Text="Connect" Grid.Row="0" Grid.Column="0"/>
-                <Button x:Name="btnDisconnect" Text="Disconnect" Grid.Row="0" Grid.Column="1"/>
-                <Button x:Name="btnServerStart" Text="Start Server" Grid.Row="1" Grid.Column="0"/>
-                <Button x:Name="btnServerStop" Text="Stop Server" Grid.Row="1" Grid.Column="1"/>
+                <Button x:Name="btnConnect" Text="Connect" Grid.Row="0" Grid.Column="0" Clicked="btnConnect_Clicked"/>
+                <Button x:Name="btnDisconnect" Text="Disconnect" Grid.Row="0" Grid.Column="1" Clicked="btnDisconnect_Clicked" IsEnabled="False"/>
+                <Button x:Name="btnServerStart" Text="Start Server" Grid.Row="1" Grid.Column="0" Clicked="btnServerStart_Clicked"/>
+                <Button x:Name="btnServerStop" Text="Stop Server" Grid.Row="1" Grid.Column="1" Clicked="btnServerStop_Clicked" IsEnabled="False"/>
 
             </Grid>
+
+            <Label Text="Username"/>
+            <Entry x:Name="txtUsername"/>
         </StackLayout>
 
         <Label x:Name="lblLog" Grid.Row="1"/>
@@ -44,8 +48,14 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Entry x:Name="txtSend" Grid.Column="0" Text="Enter Message" IsEnabled="False"/>
-            <Button x:Name="btnSend" Grid.Column="1" Text="Send" IsEnabled="False" WidthRequest="100"/>
+            <Entry x:Name="txtSend"
+                   Grid.Column="0"
+                   Text="Enter Message"
+                   IsEnabled="False"
+                   Focused="txtSend_FocusChanged"
+                   Unfocused="txtSend_FocusChanged"
+                   TextChanged="txtSend_TextChanged"/>
+            <Button x:Name="btnSend" Grid.Column="1" Text="Send" IsEnabled="False" WidthRequest="100" Clicked="btnSend_Clicked"/>
         </Grid>
         
     </Grid>
